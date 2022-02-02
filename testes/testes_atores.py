@@ -14,7 +14,7 @@ from atores import Ator, DESTRUIDO, ATIVO, Obstaculo, Porco, PassaroAmarelo, Pas
 
 
 class AtorTestes(TestCase):
-    def teste_valores_padrao(self):
+    def teste_valores_padrao(self): #OK
         'Testa valores iniciais padrão de um Ator'
         ator = Ator()
         self.assertEqual(0, ator.x)
@@ -22,7 +22,7 @@ class AtorTestes(TestCase):
         self.assertEqual(ATIVO, ator.status)
         self.assertEqual('A', ator.caracter())
 
-    def teste_valores_passados_por_parametro(self):
+    def teste_valores_passados_por_parametro(self): #OK
         'Testa se valores passados no inicializador são armazenados no objeto'
         ator = Ator(1, 2)
         self.assertEqual(1, ator.x)
@@ -30,7 +30,7 @@ class AtorTestes(TestCase):
         self.assertEqual(ATIVO, ator.status)
         self.assertEqual('A', ator.caracter())
 
-    def teste_ator_posicao(self):
+    def teste_ator_posicao(self): #ok
         'Teste que verifica que o ator comum não deve se mover independente do tempo do jogo'
         ator = Ator()
         x, y = ator.calcular_posicao(0)
@@ -41,7 +41,6 @@ class AtorTestes(TestCase):
         x, y = ator.calcular_posicao(10)
         self.assertEqual(0.3, x)
         self.assertEqual(0.5, y)
-
 
     def teste_colisao_entre_atores_ativos(self):
         """
@@ -165,11 +164,10 @@ class PorcoTestes(TestCase):
         porco.colidir(outro_ator_na_mesma_posicao)
         self.assertEqual('+', porco.caracter())
 
-
 class PassaroBaseTests(TestCase):
     """
     Classe base para teste de passaros.
-    Essa classe não contèm nenhum teste, serve apenas para encapsular a lógica de asserção de posição de passaros
+    Essa classe não contém nenhum teste, serve apenas para encapsular a lógica de asserção de posição de passaros
     vermelhos e também dos amarelos.
 
     """
@@ -189,7 +187,6 @@ class PassaroBaseTests(TestCase):
         self.assertEqual(y_esperado, round(y_calculado), 'valor real de y = %s' % y_calculado)
         self.assertEqual(status_esperado, passaro.status, '(x = %s, y = %s)' % (x_calculado, y_calculado))
 
-
 class PassaroVermelhoTests(PassaroBaseTests):
     """
     Classe de teste e Passaro Vermelho
@@ -202,10 +199,8 @@ class PassaroVermelhoTests(PassaroBaseTests):
         passaro_vermelho.colidir(outro_ator_na_mesma_posicao)
         self.assertEqual('v', passaro_vermelho.caracter())
 
-
     def teste_velocidade_escalar(self):
         self.assertEqual(20, PassaroVermelho.velocidade_escalar)
-
 
     def teste_foi_lancado(self):
         """
@@ -247,6 +242,7 @@ class PassaroAmareloTests(PassaroBaseTests):
     Classe de Tests para passaros amarelos
     """
 
+
     def teste_status(self):
         passaro_amarelo = PassaroAmarelo(1, 1)
         self.assertEqual('A', passaro_amarelo.caracter())
@@ -259,7 +255,8 @@ class PassaroAmareloTests(PassaroBaseTests):
 
     def teste_lacamento_vertical(self):
         """
-        Tests de lançamento vertical. Nele, o passaro só se move verticalmente e sua posição y se matém contanstante
+        Tests de lançamento vertical. Nele, o passaro só se move verticalmente e sua posição
+        y se matém contanstante
         :return:
         """
         passaro_amarelo = PassaroAmarelo(1, 1)
